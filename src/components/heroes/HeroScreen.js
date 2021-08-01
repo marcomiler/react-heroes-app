@@ -1,8 +1,9 @@
 import React, { useMemo } from 'react'
 import { Redirect, useParams } from 'react-router-dom'
+import { heroImages } from '../../helpers/heroImages';
 import { getHeroeById } from '../../selectors/getHeroById';
 
-export const HeroScreen = ({history}) => {
+export const HeroScreen = ({ history }) => {
 
     //extraemos el Id de los parametros
     const {heroeId} =  useParams();
@@ -33,8 +34,11 @@ export const HeroScreen = ({history}) => {
 
     return (
         <div className="row mt-5">
-            <div className="col-4">
-                <img src={`../assets/heroes/${heroeId}.jpg`} 
+            <div style={{maxWidth:450}} className="col-4">
+                <img 
+                    // src={`../assets/heroes/${heroeId}.jpg`} desde assets/heroes
+                    //src = {batman} con import
+                     src={ heroImages(`./${ heroeId }.jpg`).default }
                      alt={id}
                      className="img-thumbnail"/>
             </div>

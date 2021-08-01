@@ -6,5 +6,5 @@ export const MarvelScreen = () => {
         <div>
             <HeroList publisher={'Marvel Comics'}/>
         </div>
-    )
+    );
 }

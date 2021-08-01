@@ -1,7 +1,30 @@
-import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import React, { useContext } from 'react';
+import { Link, NavLink, useHistory } from 'react-router-dom';
+import { AuthContext } from '../../auth/AuthContext';
+import { types } from '../../types/types';
 
 export const Navbar = () => {
+
+    //TENER EN CUENTA !!!!!
+    //El navbar al no ser una ruta no tiene acceso al history
+    //una primera opcion fue obtener la history por los props y enviarselo al navbar
+
+    const { user: { name } } = useContext( AuthContext );//obtengo la propiedad name de mi objeto
+    const history = useHistory();//el router tambien es un provider por lo que tiene informacion de todo el contexto de las rutas, entre ellas el history
+    // console.log(history);
+
+    const { dispatch } = useContext( AuthContext );
+
+    const handleLogout = () => {
+
+        dispatch({
+            type: types.logout
+        });
+
+        history.replace('/login');
+        
+    }
+
     return (
         <nav className="navbar navbar-expand-sm navbar-dark bg-dark">
             
@@ -46,14 +69,17 @@ export const Navbar = () => {
 
             <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
                 <ul className="navbar-nav ml-auto">
-                    <NavLink 
-                        activeClassName="active"
-                        className="nav-item nav-link" 
-                        exact
-                        to="/login"
+
+                    <span className="nav-item nav-link text-info">
+                    | { name } |
+                    </span>
+
+                    <button
+                        onClick={handleLogout}
+                        className="btn nav-item nav-link" 
                     >
                         Logout
-                    </NavLink>
+                    </button>
                 </ul>
             </div>
         </nav>

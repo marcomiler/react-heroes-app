@@ -27,17 +27,17 @@ const SearchScreen = ({ history }) => {
  
     return (
         <div>
-            <h1>Search Screen</h1>
+            <h1>Find your favorite hero</h1>
             <hr />
             <div className="row">
-                <div className="col-5">
-                    <h4>Search Form</h4>
+                <div className="col-7">
+                    <h4>Enter a hero in the text field</h4>
                     <hr />
 
                     <form onSubmit={handleSearch}>
                         <input 
                             type="text"
-                            placeholder="Find your hero"
+                            placeholder="write name your hero"
                             className="form-control"
                             name="txtSearch"
                             autoComplete="off"
@@ -55,7 +55,7 @@ const SearchScreen = ({ history }) => {
                     </form>
                 </div>
 
-                <div className="col-7">
+                <div className="col-5">
                     <h4>Results</h4>
                     <hr />
 
@@ -69,7 +69,7 @@ const SearchScreen = ({ history }) => {
                     {
                         ( q !== '' && heroesFiltered.length === 0) &&
                         <div className="alert alert-danger">
-                            There is no a hero with {q}
+                            There is not a hero with {q}
                         </div>
                     }
 
